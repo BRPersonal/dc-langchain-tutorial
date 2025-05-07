@@ -1,4 +1,5 @@
 from langchain_huggingface import HuggingFacePipeline
+from langchain_core.prompts import PromptTemplate
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
 from utils.AppConfig import AppConfig
@@ -25,5 +26,10 @@ pipe = pipeline(
 llm = HuggingFacePipeline(pipeline=pipe)
 
 # Test the model
-result = llm.invoke("What is Hugging Face?")
+template = "Explain this concept simply and concisely: {concept}"
+prompt_template = PromptTemplate.from_template(template=template)
+
+#Let us create a chain that connects calls to different components
+llm_chain = prompt_template | llm
+result = llm_chain.invoke({"concept" : "Prompting LLms"})
 print(f"result=\n{result}")
