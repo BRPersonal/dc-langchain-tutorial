@@ -1,5 +1,7 @@
 # dc-langchain-tutorial
 Langchain Tutorial from DataCamp
+https://campus.datacamp.com/courses/developing-llm-applications-with-langchain/
+
 
 #create virtual environment and install pip and dotenv
 $ python -m venv .venv
